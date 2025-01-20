@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: kolabajabe
+  name: port-forward-role
+rules:
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get", "list"]
