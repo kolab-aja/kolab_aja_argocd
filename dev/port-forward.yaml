@@ -5,6 +5,7 @@ metadata:
 spec:
   template:
     spec:
+      serviceAccountName: default  # Ensure the default service account is used
       containers:
         - name: port-forward
           image: bitnami/kubectl:latest
@@ -42,7 +43,7 @@ spec:
                 apiGroup: rbac.authorization.k8s.io
               EOF
 
-              # Now perform the port forward
+              # Perform the port forward
               kubectl port-forward svc/myapp-service 8000:8080 -n kolabajabe
       restartPolicy: Never
   backoffLimit: 4
