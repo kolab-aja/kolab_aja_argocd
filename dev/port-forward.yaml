@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kolabajabe-port-forward
+spec:
+  template:
+    spec:
+      containers:
+        - name: port-forward
+          image: bitnami/kubectl:latest
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "kubectl port-forward svc/myapp-service 8000:8080 -n kolabajabe"
+      restartPolicy: Never
+  backoffLimit: 4

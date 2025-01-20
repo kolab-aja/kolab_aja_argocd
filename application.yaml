@@ -21,3 +21,8 @@ spec:
     automated:
       selfHeal: true
       prune: true
+  hooks:
+    - name: kolabajabe-port-forward
+      kind: Job
+      sync:
+        wait: true
