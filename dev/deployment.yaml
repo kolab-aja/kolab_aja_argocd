@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kolabajabe
+spec:
+  selector:
+    matchLabels:
+      app: kolabajabe
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: kolabajabe
+    spec:
+      containers:
+      - name: kolabajabe
+        image: edbfort/kolab-aja-be:latest
+        ports:
+        - containerPort: 8080
