@@ -11,6 +11,38 @@ spec:
           command:
             - "/bin/sh"
             - "-c"
-            - "kubectl port-forward svc/myapp-service 8000:8080 -n kolabajabe"
+            - |
+              # Create the Role if it doesn't exist
+              kubectl get role port-forward-pods-role -n kolabajabe || kubectl apply -f - <<EOF
+              apiVersion: rbac.authorization.k8s.io/v1
+              kind: Role
+              metadata:
+                namespace: kolabajabe
+                name: port-forward-pods-role
+              rules:
+              - apiGroups: [""]
+                resources: ["pods"]
+                verbs: ["get", "list"]
+              EOF
+
+              # Create the RoleBinding if it doesn't exist
+              kubectl get rolebinding port-forward-pods-rolebinding -n kolabajabe || kubectl apply -f - <<EOF
+              apiVersion: rbac.authorization.k8s.io/v1
+              kind: RoleBinding
+              metadata:
+                name: port-forward-pods-rolebinding
+                namespace: kolabajabe
+              subjects:
+              - kind: ServiceAccount
+                name: default
+                namespace: kolabajabe
+              roleRef:
+                kind: Role
+                name: port-forward-pods-role
+                apiGroup: rbac.authorization.k8s.io
+              EOF
+
+              # Now perform the port forward
+              kubectl port-forward svc/myapp-service 8000:8080 -n kolabajabe
       restartPolicy: Never
   backoffLimit: 4
