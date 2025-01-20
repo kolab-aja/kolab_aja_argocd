@@ -13,7 +13,22 @@ spec:
         app: kolabajabe
     spec:
       containers:
-      - name: kolabajabe
-        image: edbfort/kolab-aja-be:latest
-        ports:
-        - containerPort: 8080
+        - name: kolabajabe
+          image: edbfort/kolab-aja-be:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: "localhost"  # Update with your database host (e.g., MySQL host or Docker container IP)
+            - name: DB_PORT
+              value: "3306"  # Replace with the correct port (default MySQL port is 3306)
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials  # The secret you created
+                  key: root         # The key inside the secret
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials  # The secret you created
+                  key:          # The key inside the secret
