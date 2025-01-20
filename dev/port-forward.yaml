@@ -22,8 +22,11 @@ spec:
                 name: port-forward-pods-role
               rules:
               - apiGroups: [""]
-                resources: ["pods"]
-                verbs: ["get", "list"]
+                resources: ["services", "pods"]
+                verbs: ["get", "list", "portforward"]
+              - apiGroups: ["rbac.authorization.k8s.io"]
+                resources: ["roles", "rolebindings"]
+                verbs: ["get", "list", "create", "update"]
               EOF
 
               # Create the RoleBinding if it doesn't exist
