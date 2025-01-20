@@ -26,9 +26,9 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: db-credentials  # The secret you created
-                  key: root         # The key inside the secret
+                  key: username         # The key inside the secret
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: db-credentials  # The secret you created
-                  key:          # The key inside the secret
+                  key: password         # The key inside the secret
