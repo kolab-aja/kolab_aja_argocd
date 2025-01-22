@@ -4,10 +4,10 @@ metadata:
   name: myapp-ingress
   namespace: kolabajabe
   annotations:
-    nginx.ingress.kubernetes.io/enable-cors: "true"  # Enable CORS
-    nginx.ingress.kubernetes.io/cors-allow-origin: "http://myapp-service.kolabajafe.svc.cluster.local:3000"  # Frontend URL
-    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE"  # Allowed methods
-    nginx.ingress.kubernetes.io/cors-allow-headers: "Content-Type,Authorization"  # Allowed headers
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"  # Allow any origin
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "Content-Type,Authorization"
 spec:
   rules:
   - host: myapp-service.kolabajabe.svc.cluster.local
