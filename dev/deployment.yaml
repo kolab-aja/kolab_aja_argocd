@@ -25,12 +25,12 @@ spec:
               value: "root"
             - name: DB_PASSWORD
               value: ""        # The key inside the secret
-          resources:
-            requests:
-              cpu: "500m"
-              memory: "256Mi"
-            limits:
-              cpu: "500m"
-              memory: "256Mi"
+          # resources:
+          #   requests:
+          #     cpu: "500m"
+          #     memory: "256Mi"
+          #   limits:
+          #     cpu: "500m"
+          #     memory: "256Mi"
 
 
